@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class FibonacciTest {
+class FibonacciTest {
 
   @ParameterizedTest
   @MethodSource("fibonacciTestInputOutputProvider")
@@ -18,8 +18,8 @@ public class FibonacciTest {
 
   @Test
   void shouldThrowExceptionWHenFibonacciRecursiveIsCalledWithNegativeNUmber() {
-    Assertions.assertThrows(RuntimeException.class, () -> {
-      Fibonacci.recursive(-2);
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      Fibonacci.recursive(-1);
     });
   }
 

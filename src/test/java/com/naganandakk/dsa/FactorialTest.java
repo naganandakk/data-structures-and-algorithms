@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class FactorialTest {
+class FactorialTest {
 
   @ParameterizedTest
   @MethodSource("factorialTestInputOutputProvider")
@@ -18,7 +18,7 @@ public class FactorialTest {
 
   @Test
   void shouldThrowExceptionWHenFactorialRecursiveIsCalledWithNegativeNUmber() {
-    Assertions.assertThrows(RuntimeException.class, () -> {
+    Assertions.assertThrows(IllegalArgumentException.class, () -> {
       Factorial.recursive(-1);
     });
   }

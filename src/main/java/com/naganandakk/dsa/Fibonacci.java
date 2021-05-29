@@ -2,9 +2,11 @@ package com.naganandakk.dsa;
 
 public class Fibonacci {
 
+  private Fibonacci() {}
+
   public static int recursive(int n) {
     if (n < 0) {
-      throw new RuntimeException("Negative number is not allowed.");
+      throw new IllegalArgumentException("Negative number is not allowed.");
     }
 
     if (n == 0) {
