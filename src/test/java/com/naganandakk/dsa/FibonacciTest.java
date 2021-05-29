@@ -1,6 +1,7 @@
 package com.naganandakk.dsa;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,13 +12,20 @@ public class FibonacciTest {
 
   @ParameterizedTest
   @MethodSource("fibonacciTestInputOutputProvider")
-  public void testRecursiveFibonacci(int input, int expected) {
+  void testRecursiveFibonacci(int input, int expected) {
     Assertions.assertEquals(expected, Fibonacci.recursive(input));
   }
 
+  @Test
+  void shouldThrowExceptionWHenFibonacciRecursiveIsCalledWithNegativeNUmber() {
+    Assertions.assertThrows(RuntimeException.class, () -> {
+      Fibonacci.recursive(-2);
+    });
+  }
+
+
   private static Stream<Arguments> fibonacciTestInputOutputProvider() {
     return Stream.of(
-        Arguments.of(-1, 0),
         Arguments.of(0, 0),
         Arguments.of(1, 1),
         Arguments.of(2, 1),
