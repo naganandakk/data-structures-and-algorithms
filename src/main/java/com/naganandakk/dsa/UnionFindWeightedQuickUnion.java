@@ -25,17 +25,20 @@ package com.naganandakk.dsa;
 
 import com.naganandakk.dsa.exceptions.IllegalArgumentException;
 
-public class UnionFindQuickUnion {
+public class UnionFindWeightedQuickUnion {
   private final int[] id;
+  private final int[] size;
 
-  public UnionFindQuickUnion(int n) {
+  public UnionFindWeightedQuickUnion(int n) {
     if (n < 2) {
       throw new IllegalArgumentException("n should be >= 2");
     }
 
     id = new int[n];
+    size = new int[n];
     for (int i = 0; i < n; i++) {
       id[i] = i;
+      size[i] = 1;
     }
   }
 
@@ -54,7 +57,13 @@ public class UnionFindQuickUnion {
 
       if (rp == rq) return;
 
-      id[rp] = rq;
+      if (size[rp] < size[rq]) {
+        id[rp] = rq;
+        size[rq] += size[rp];
+      } else {
+        id[rq] = rp;
+        size[rp] += size[rq];
+      }
     }
   }
 

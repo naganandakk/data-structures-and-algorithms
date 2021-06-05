@@ -86,4 +86,13 @@ class UnionFindQuickUnionTest {
     Assertions.assertTrue(unionFindQuickUnion.connected(0, 3));
     Assertions.assertTrue(unionFindQuickUnion.connected(1, 3));
   }
+
+  @Test
+  void shouldReturnNotConnectedForNotConnectedValues() {
+    int n = 10;
+    UnionFindQuickUnion unionFindQuickUnion = new UnionFindQuickUnion(n);
+    for (int i = 0; i < n - 1; i++) {
+      Assertions.assertFalse(unionFindQuickUnion.connected(i, i + 1));
+    }
+  }
 }

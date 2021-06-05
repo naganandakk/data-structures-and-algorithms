@@ -88,4 +88,13 @@ class UnionFindQuickFindTest {
     Assertions.assertTrue(unionFindQuickFind.connected(0, 3));
     Assertions.assertTrue(unionFindQuickFind.connected(1, 3));
   }
+
+  @Test
+  void shouldReturnNotConnectedForNotConnectedValues() {
+    int n = 10;
+    UnionFindQuickFind unionFindQuickFind = new UnionFindQuickFind(n);
+    for (int i = 0; i < n - 1; i++) {
+      Assertions.assertFalse(unionFindQuickFind.connected(i, i + 1));
+    }
+  }
 }
