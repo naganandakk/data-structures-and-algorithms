@@ -25,67 +25,65 @@ package com.naganandakk.dsa;
 
 import com.naganandakk.dsa.exceptions.IllegalArgumentException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class UnionFindQuickFindTest {
-
+class UnionFindQuickUnionTest {
   @ParameterizedTest
   @ValueSource(ints = {-1, 0, 1})
   void shouldNotAcceptLessThanTwoItems(int n) {
-    Assertions.assertThrows(IllegalArgumentException.class, () -> new UnionFindQuickFind(n));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> new UnionFindQuickUnion(n));
   }
 
   @Test
   void shouldThrowExceptionWhenConnectedIsCalledWithOutOfRangeValues() {
     int n = 10;
-    UnionFindQuickFind unionFindQuickFind = new UnionFindQuickFind(n);
-    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickFind.connected(-1, 0));
-    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickFind.connected(0, -1));
-    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickFind.connected(n, 0));
-    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickFind.connected(0, n));
+    UnionFindQuickUnion unionFindQuickUnion = new UnionFindQuickUnion(n);
+    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickUnion.connected(-1, 0));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickUnion.connected(0, -1));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickUnion.connected(n, 0));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickUnion.connected(0, n));
   }
 
   @Test
   void shouldThrowExceptionWhenUnionIsCalledWithOutOfRangeValues() {
     int n = 10;
-    UnionFindQuickFind unionFindQuickFind = new UnionFindQuickFind(n);
-    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickFind.union(-1, 0));
-    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickFind.union(0, -1));
-    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickFind.union(n, 0));
-    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickFind.union(0, n));
+    UnionFindQuickUnion unionFindQuickUnion = new UnionFindQuickUnion(n);
+    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickUnion.union(-1, 0));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickUnion.union(0, -1));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickUnion.union(n, 0));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> unionFindQuickUnion.union(0, n));
   }
 
   @Test
   void shouldReturnConnectedForReflectiveValues() {
     int n = 10;
-    UnionFindQuickFind unionFindQuickFind = new UnionFindQuickFind(n);
+    UnionFindQuickUnion unionFindQuickUnion = new UnionFindQuickUnion(n);
     for (int i = 0; i < n; i++) {
-      Assertions.assertTrue(unionFindQuickFind.connected(i, i));
+      Assertions.assertTrue(unionFindQuickUnion.connected(i, i));
     }
   }
 
   @Test
   void shouldReturnConnectedForSymmetricValues() {
     int n = 10;
-    UnionFindQuickFind unionFindQuickFind = new UnionFindQuickFind(n);
+    UnionFindQuickUnion unionFindQuickUnion = new UnionFindQuickUnion(n);
     for (int i = 0; i < n; i += 2) {
-      unionFindQuickFind.union(i, i + 1);
-      Assertions.assertTrue(unionFindQuickFind.connected(i, i + 1));
+      unionFindQuickUnion.union(i, i + 1);
+      Assertions.assertTrue(unionFindQuickUnion.connected(i, i + 1));
     }
   }
 
   @Test
   void shouldReturnConnectedForTransitiveValues() {
     int n = 4;
-    UnionFindQuickFind unionFindQuickFind = new UnionFindQuickFind(n);
+    UnionFindQuickUnion unionFindQuickUnion = new UnionFindQuickUnion(n);
     for (int i = 0; i < n - 1; i ++) {
-      unionFindQuickFind.union(i, i + 1);
+      unionFindQuickUnion.union(i, i + 1);
     }
-    Assertions.assertTrue(unionFindQuickFind.connected(0, 2));
-    Assertions.assertTrue(unionFindQuickFind.connected(0, 3));
-    Assertions.assertTrue(unionFindQuickFind.connected(1, 3));
+    Assertions.assertTrue(unionFindQuickUnion.connected(0, 2));
+    Assertions.assertTrue(unionFindQuickUnion.connected(0, 3));
+    Assertions.assertTrue(unionFindQuickUnion.connected(1, 3));
   }
 }
