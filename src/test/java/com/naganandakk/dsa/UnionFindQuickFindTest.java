@@ -79,7 +79,7 @@ class UnionFindQuickFindTest {
 
   @Test
   void shouldReturnConnectedForTransitiveValues() {
-    int n = 4;
+    int n = 10000;
     UnionFindQuickFind unionFindQuickFind = new UnionFindQuickFind(n);
     for (int i = 0; i < n - 1; i ++) {
       unionFindQuickFind.union(i, i + 1);

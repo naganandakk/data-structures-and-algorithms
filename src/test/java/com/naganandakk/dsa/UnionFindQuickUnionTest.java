@@ -77,7 +77,7 @@ class UnionFindQuickUnionTest {
 
   @Test
   void shouldReturnConnectedForTransitiveValues() {
-    int n = 4;
+    int n = 10000;
     UnionFindQuickUnion unionFindQuickUnion = new UnionFindQuickUnion(n);
     for (int i = 0; i < n - 1; i ++) {
       unionFindQuickUnion.union(i, i + 1);

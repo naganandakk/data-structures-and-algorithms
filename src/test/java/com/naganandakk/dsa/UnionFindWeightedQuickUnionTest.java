@@ -77,7 +77,7 @@ class UnionFindWeightedQuickUnionTest {
 
   @Test
   void shouldReturnConnectedForTransitiveValues() {
-    int n = 5;
+    int n = 10000;
     UnionFindWeightedQuickUnion unionFindWeightedQuickUnion = new UnionFindWeightedQuickUnion(n);
     // 0 -> 1
     for (int i = 0; i < n - 3; i ++) {
